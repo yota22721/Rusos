@@ -1,0 +1,3 @@
+[package]
+name ="Rusos"
+forced-target = "riscv64gc-unknown-none-elf"
