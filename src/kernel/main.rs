@@ -8,6 +8,6 @@ pub fn panic(_info: &PanicInfo) -> ! {
 }
 
 #[no_mangle]
-pub unsafe extern "C" fn  _start() -> ! {
+pub unsafe extern "C" fn  main() -> ! {
     loop{}
 }
