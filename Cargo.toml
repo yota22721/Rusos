@@ -11,4 +11,11 @@ forced-target = "riscv64gc-unknown-none-elf"
 name = "Rusos"
 path = "src/kernel/main.rs"
 
+[workspace]
+members = [
+    "src/kernel",
+]
+[workspace.dependencies]
+libkernel = { path = "src/kernel", default-features = false }
 [dependencies]
+libkernel = { workspace = true, features = ["kernel"] }
