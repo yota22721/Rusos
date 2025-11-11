@@ -1,9 +1,15 @@
-use crate::start::start;
 use core::arch::asm;
+use crate::param::*;
+//use core::hint::unreachable_unchecked;
+use crate::start::start;
+
+#[repr(C, align(16))]
+struct Stack([u8; 4096 * STACK_PAGE_NUM * NCPU]);
+#[no_mangle]
+static mut STACK0: Stack = Stack([0; 4096 * STACK_PAGE_NUM * NCPU]);
 
 #[link_section = ".entry"]
 #[no_mangle]
-
 pub unsafe extern "C" fn _entry() -> ! {
     asm!(
       "la sp, STACK0",
@@ -15,5 +21,6 @@ pub unsafe extern "C" fn _entry() -> ! {
       ssz = const STACK_PAGE_NUM,
     );
 
-    start();
+    start()
 }
+
